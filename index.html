@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Table tickets</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <script src="angular.min.js"></script>
+    <script src="tickets-controller.js"></script>
+    <script src="angular-locale_de-de.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="TicketsController">
+<div class="view-container" ng-controller="TicketsController">
+    <h1 class="h0">Таблица билетов</h1>
+    <div class="view-frame ng-scope">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <label>Цена</label>
+                <div>
+                    <input ng-model="f.price" class="form-control form-control-lg search-form-control"
+                           placeholder="Стоимость" type="text">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label>Количество пересадок</label>
+                <div>
+                    <input ng-model="f.stops" class="form-control form-control-lg search-form-control"
+                           placeholder="Остановки" type="text">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label>Номер автобуса</label>
+                <div>
+                    <input ng-model="f.bus.number" class="form-control form-control-lg search-form-control"
+                            placeholder="Номер" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+<br>
+        <div class="table-responsive view-container">
+            <table class="table table-border table-hover table-striped table-condensed">
+                <thead>
+                <tr class="active">
+                    <th>Bus number</th>
+                    <th>Carrier</th>
+                    <th>Stops</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="ticket in tickets | filter:f">
+                    <td>{{ ticket.bus.number }}</td>
+                    <td>{{ ticket.carrier }}</td>
+                    <td>{{ ticket.stops }}</td>
+                    <td>{{ ticket.price | currency: "" }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
